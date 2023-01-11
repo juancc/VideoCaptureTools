@@ -21,7 +21,7 @@ parser = argparse.ArgumentParser(
 
 parser.add_argument('filename', help='Name of the file to store video')
 parser.add_argument('cam', help='Camera ID number', type=int)
-parser.add_argument('-f', '--fps', help='Frames per second of video record', default=FPS)
+parser.add_argument('-f', '--fps', help='Frames per second of video record', default=FPS, type=int)
 
 
 def main(filename, cam_id, fps):
@@ -30,7 +30,8 @@ def main(filename, cam_id, fps):
     savepath = os.path.join(SAVEPATH, filename+'.avi')
 
     cam_id = int(cam_id)
-    print(f'Recording video on {savepath} of camera {cam_id}')
+    fps = int(fps)
+    print(f'Recording video on {savepath} of camera {cam_id} at {fps} fps')
 
     cap = cv.VideoCapture(cam_id)
     # Get frame size to create recorder
